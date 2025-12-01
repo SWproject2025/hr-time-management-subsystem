@@ -31,16 +31,6 @@
 $ npm install
 ```
 
-## Environment
-
-Create a `.env` file in the `backend/` directory and provide your MongoDB connection string:
-
-```bash
-MONGO_URI=mongodb://localhost:27017/hr-system
-```
-
-You can point `MONGO_URI` to Atlas or any other MongoDB instance that should back the Time Management module.
-
 ## Compile and run the project
 
 ```bash
