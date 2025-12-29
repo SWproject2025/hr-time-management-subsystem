@@ -1,21 +1,27 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 
 export type AttachmentDocument = HydratedDocument<Attachment>;
 
-@Schema({ timestamps: true })
+@Schema({ collection: 'attachments', timestamps: true })
 export class Attachment {
+  @Prop({ required: true })
+  filename: string;
+
   @Prop({ required: true })
   originalName: string;
 
   @Prop({ required: true })
-  filePath: string;
+  mimetype: string;
+
+  @Prop({ required: true })
+  path: string;
 
   @Prop()
-  fileType?: string;
+  size: number;
 
-  @Prop()
-  size?: number;
+  @Prop({ type: Types.ObjectId, ref: 'EmployeeProfile' })
+  uploadedBy: Types.ObjectId;
 }
 
 export const AttachmentSchema = SchemaFactory.createForClass(Attachment);

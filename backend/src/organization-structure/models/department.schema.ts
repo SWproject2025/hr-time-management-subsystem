@@ -15,11 +15,28 @@ export class Department {
   @Prop({ type: String })
   description?: string;
 
+  /**
+   * Whether the department is currently active in the organizational structure.
+   * Use this instead of deleting documents to preserve history.
+   */
+  @Prop({ type: Boolean, default: true })
+  active: boolean;
+
+  /**
+   * Date from which the department is considered active.
+   */
+  @Prop({ type: Date, default: () => new Date() })
+  startDate: Date;
+
+  /**
+   * Date at which the department stopped being active.
+   * Used for delimitation instead of hard deletion.
+   */
+  @Prop({ type: Date, default: null })
+  endDate: Date | null;
+
   @Prop({ type: Types.ObjectId, ref: 'Position' })
   headPositionId?: Types.ObjectId;
-
-  @Prop({ type: Boolean, default: true })
-  isActive: boolean;
 }
 
 export const DepartmentSchema = SchemaFactory.createForClass(Department);

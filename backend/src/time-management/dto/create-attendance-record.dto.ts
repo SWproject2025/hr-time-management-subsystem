@@ -1,15 +1,15 @@
-import { IsNotEmpty, IsString, IsOptional, IsBoolean, IsNumber, IsArray, ValidateNested, IsDateString } from 'class-validator';
+import { IsNotEmpty, IsEnum, IsOptional, IsBoolean, IsNumber, IsArray, ValidateNested, IsDateString, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PunchType } from '../models/enums';
 
 export class PunchDto {
   @IsNotEmpty()
-  @IsString()
+  @IsEnum(PunchType)
   type: PunchType;
 
   @IsNotEmpty()
   @IsDateString()
-  time: Date;
+  time: string;
 }
 
 export class CreateAttendanceRecordDto {

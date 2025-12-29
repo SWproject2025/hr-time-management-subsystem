@@ -8,7 +8,7 @@ import { BonusStatus } from '../enums/payroll-execution-enum';
 export type employeeSigningBonusDocument = HydratedDocument<employeeSigningBonus>
 
 
-@Schema({timestamps: true})
+@Schema({ timestamps: true, collection: 'employeesigningbonus' })
 export class employeeSigningBonus {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Employee.name, required: true })
     employeeId: mongoose.Types.ObjectId;

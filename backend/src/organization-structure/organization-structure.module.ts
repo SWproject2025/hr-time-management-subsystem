@@ -5,6 +5,10 @@ import { OrganizationStructureService } from './organization-structure.service';
 import { Department, DepartmentSchema } from './models/department.schema';
 import { Position, PositionSchema } from './models/position.schema';
 import {
+  JobRequisition,
+  JobRequisitionSchema,
+} from './models/job-requisition.schema';
+import {
   PositionAssignment,
   PositionAssignmentSchema,
 } from './models/position-assignment.schema';
@@ -26,6 +30,7 @@ import {
     MongooseModule.forFeature([
       { name: Department.name, schema: DepartmentSchema },
       { name: Position.name, schema: PositionSchema },
+      { name: JobRequisition.name, schema: JobRequisitionSchema },
       { name: PositionAssignment.name, schema: PositionAssignmentSchema },
       { name: StructureApproval.name, schema: StructureApprovalSchema },
       { name: StructureChangeLog.name, schema: StructureChangeLogSchema },
@@ -37,5 +42,6 @@ import {
   ],
   controllers: [OrganizationStructureController],
   providers: [OrganizationStructureService],
+  exports: [OrganizationStructureService],
 })
 export class OrganizationStructureModule {}

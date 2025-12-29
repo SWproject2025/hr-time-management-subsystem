@@ -24,11 +24,11 @@ export class CreateShiftAssignmentDto {
 
   @IsNotEmpty()
   @IsDateString()
-  startDate: Date;
+  startDate: string;
 
   @IsOptional()
   @IsDateString()
-  endDate?: Date;
+  endDate?: string;
 
   @IsOptional()
   @IsEnum(ShiftAssignmentStatus)

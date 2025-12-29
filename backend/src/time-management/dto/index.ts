@@ -6,6 +6,31 @@ export * from './update-attendance-record.dto';
 export * from './create-attendance-correction-request.dto';
 export * from './update-attendance-correction-request.dto';
 
+// Attendance Rules
+export * from './create-attendance-rules.dto';
+export * from './update-attendance-rules.dto';
+
+// Flexible Punch Configuration
+export * from './create-flexible-punch-config.dto';
+export * from './update-flexible-punch-config.dto';
+
+// Rest Day Configuration
+export * from './create-rest-day-config.dto';
+export * from './update-rest-day-config.dto';
+
+// Sync Logs
+export * from './create-sync-log.dto';
+
+// Integration Configuration
+export * from './update-integration-config.dto';
+
+// Payroll Closure Configuration
+export * from './update-payroll-closure-config.dto';
+
+// Approval Workflow Configuration
+export * from './create-approval-workflow.dto';
+export * from './update-approval-workflow.dto';
+
 // Overtime Rules
 export * from './create-overtime-rule.dto';
 export * from './update-overtime-rule.dto';

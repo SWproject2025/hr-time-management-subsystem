@@ -20,6 +20,15 @@ export class Holiday {
 
   @Prop({ default: true })
   active: boolean;
+
+  @Prop({ default: false })
+  recurring: boolean; // yearly recurring holiday
+
+  @Prop()
+  description?: string;
+
+  @Prop()
+  region?: string; // for regional holidays
 }
 
 export const HolidaySchema = SchemaFactory.createForClass(Holiday);

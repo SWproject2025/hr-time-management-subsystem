@@ -13,7 +13,19 @@ export class NotificationLog {
     type: string;
 
     @Prop()
-    message?: string;
+    title?: string;
+
+    @Prop()
+    body?: string;
+
+    @Prop({ default: 'NORMAL', enum: ['LOW', 'NORMAL', 'HIGH', 'URGENT'] })
+    priority: string;
+
+    @Prop({ type: Object })
+    metadata?: any;
+
+    @Prop({ default: false })
+    read: boolean;
 }
 
 export const NotificationLogSchema = SchemaFactory.createForClass(NotificationLog);

@@ -1,13 +1,11 @@
+// src/performance/models/appraisal-assignment.schema.ts
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import { AppraisalAssignmentStatus } from '../enums/performance.enums';
-import { Department } from '../../organization-structure/models/department.schema';
-import { Position } from '../../organization-structure/models/position.schema';
-import { EmployeeProfile } from '../../employee-profile/models/employee-profile.schema';
-import { AppraisalCycle } from './appraisal-cycle.schema';
-import { AppraisalTemplate } from './appraisal-template.schema';
 
-export type AppraisalAssignmentDocument = HydratedDocument<AppraisalAssignment>;
+export type AppraisalAssignmentDocument =
+  HydratedDocument<AppraisalAssignment>;
 
 @Schema({ collection: 'appraisal_assignments', timestamps: true })
 export class AppraisalAssignment {
@@ -48,8 +46,14 @@ export class AppraisalAssignment {
   @Prop({ type: Date })
   publishedAt?: Date;
 
+  @Prop({ type: Date })
+  employeeAcknowledgedAt?: Date;
+
   @Prop({ type: Types.ObjectId, ref: 'AppraisalRecord' })
   latestAppraisalId?: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: 'AppraisalDispute' })
+  disputeId?: Types.ObjectId;
 }
 
 export const AppraisalAssignmentSchema =

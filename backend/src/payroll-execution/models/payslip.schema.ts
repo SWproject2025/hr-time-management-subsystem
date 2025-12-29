@@ -15,7 +15,10 @@ import { PaySlipPaymentStatus } from '../enums/payroll-execution-enum';
 
 export type PayslipDocument = HydratedDocument<paySlip>
 
-@Schema()
+@Schema({ 
+    collection: 'paySlip',  // ✅ Match the existing collection name (capital S)
+    timestamps: true 
+  })
 class Earnings {
     @Prop()
     baseSalary: number;
@@ -51,7 +54,7 @@ class Deductions {
 const DeductionsSchema = SchemaFactory.createForClass(Deductions)
 
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, autoIndex: false })
 export class paySlip {
     @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: Employee.name })
     employeeId: mongoose.Types.ObjectId;

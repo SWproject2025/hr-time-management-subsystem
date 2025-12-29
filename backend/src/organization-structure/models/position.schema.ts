@@ -10,7 +10,7 @@ export class Position {
   code: string;
 
   @Prop({ type: String, required: true })
-  title: string;
+  name: string;
 
   @Prop({ type: String })
   description?: string;
@@ -18,11 +18,36 @@ export class Position {
   @Prop({ type: Types.ObjectId, ref: 'Department', required: true })
   departmentId: Types.ObjectId;
 
+  /**
+   * Reporting line for this position (typically the parent/manager position).
+   */
   @Prop({ type: Types.ObjectId, ref: 'Position' })
-  reportsToPositionId?: Types.ObjectId;
+  reportingLine?: Types.ObjectId;
 
+  /**
+   * Pay grade reference or code used by payroll configuration.
+   */
+  @Prop({ type: String })
+  payGrade?: string;
+
+  /**
+   * Whether the position is currently active in the organizational structure.
+   */
   @Prop({ type: Boolean, default: true })
-  isActive: boolean;
+  active: boolean;
+
+  /**
+   * Date from which the position is considered active.
+   */
+  @Prop({ type: Date, default: () => new Date() })
+  startDate: Date;
+
+  /**
+   * Date at which the position stopped being active.
+   * Used for delimitation instead of hard deletion.
+   */
+  @Prop({ type: Date, default: null })
+  endDate: Date | null;
 }
 
 export const PositionSchema = SchemaFactory.createForClass(Position);
@@ -67,7 +92,7 @@ PositionSchema.pre('save', async function (next) {
   try {
     const doc = this as HydratedDocument<Position>;
     const DepartmentModel = model<DepartmentDocument>(Department.name);
-    doc.reportsToPositionId = await resolveDepartmentHead(
+    doc.reportingLine = await resolveDepartmentHead(
       DepartmentModel,
       doc.departmentId,
       doc._id,
@@ -84,7 +109,6 @@ PositionSchema.pre('findOneAndUpdate', async function (next) {
     if (!isPositionUpdate(rawUpdate)) {
       return next();
     }
-
     const update = rawUpdate;
 
     let departmentId: Types.ObjectId | string | undefined;
@@ -124,10 +148,10 @@ PositionSchema.pre('findOneAndUpdate', async function (next) {
     );
 
     if (update.$set) {
-      update.$set.reportsToPositionId = headId;
+      update.$set.reportingLine = headId;
     } else {
       update.$set = {
-        reportsToPositionId: headId,
+        reportingLine: headId,
       } as UpdateQuery<Position>['$set'];
     }
 

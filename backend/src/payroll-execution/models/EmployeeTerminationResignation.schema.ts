@@ -9,7 +9,7 @@ import { BenefitStatus } from '../enums/payroll-execution-enum';
 export type EmployeeTerminationResignationDocument = HydratedDocument<EmployeeTerminationResignation>
 
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, collection: 'employeeterminationresignations' })
 export class EmployeeTerminationResignation {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Employee.name, required: true })
     employeeId: mongoose.Types.ObjectId;

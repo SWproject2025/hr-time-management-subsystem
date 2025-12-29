@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory, } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import {  EmployeeProfile as Employee} from '../../employee-profile/models/employee-profile.schema';
+import { EmployeeProfile as Employee } from '../../employee-profile/models/employee-profile.schema';
 import { ClaimStatus } from '../enums/payroll-tracking-enum';
+import { ApprovalHistoryEntry, ApprovalHistoryEntrySchema, Attachment, AttachmentSchema } from './common.schema';
 
 export type claimsDocument = HydratedDocument<claims>
 
@@ -43,6 +44,29 @@ export class claims {
     @Prop()
     resolutionComment?: string;
 
+    // Approval history tracking
+    @Prop({ type: [ApprovalHistoryEntrySchema], default: [] })
+    approvalHistory: ApprovalHistoryEntry[]; // Complete history of all approval actions
+
+    // Attachments/document references
+    @Prop({ type: [AttachmentSchema], default: [] })
+    attachments: Attachment[]; // Supporting documents for the claim (receipts, invoices, etc.)
+
+    // Status change timestamps
+    @Prop()
+    submittedAt?: Date; // When the claim was first submitted
+
+    @Prop()
+    reviewedAt?: Date; // When specialist reviewed it
+
+    @Prop()
+    managerApprovedAt?: Date; // When manager approved it
+
+    @Prop()
+    managerRejectedAt?: Date; // When manager rejected it
+
+    @Prop()
+    resolvedAt?: Date; // When it was finally resolved (approved or rejected)
 }
 
 export const claimsSchema = SchemaFactory.createForClass(claims);

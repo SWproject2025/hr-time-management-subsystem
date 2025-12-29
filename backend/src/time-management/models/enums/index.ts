@@ -13,8 +13,11 @@ export enum PunchType {
 
 export enum HolidayType {
     NATIONAL = 'NATIONAL',
-    ORGANIZATIONAL = 'ORGANIZATIONAL',
-    WEEKLY_REST = 'WEEKLY_REST',
+    RELIGIOUS = 'RELIGIOUS',
+    COMPANY = 'COMPANY',
+    REGIONAL = 'REGIONAL',
+    PUBLIC = 'PUBLIC',
+    OPTIONAL = 'OPTIONAL',
 }
 
 export enum ShiftAssignmentStatus {
@@ -37,6 +40,7 @@ export enum TimeExceptionType {
     SHORT_TIME = 'SHORT_TIME',
     OVERTIME_REQUEST = 'OVERTIME_REQUEST',
     MANUAL_ADJUSTMENT = 'MANUAL_ADJUSTMENT',
+    ABSENCE = 'ABSENCE',
 }
 
 export enum TimeExceptionStatus {

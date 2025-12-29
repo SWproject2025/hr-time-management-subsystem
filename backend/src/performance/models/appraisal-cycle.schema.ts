@@ -52,6 +52,11 @@ export class AppraisalCycle {
   @Prop({ type: [CycleTemplateAssignmentSchema], default: [] })
   templateAssignments: CycleTemplateAssignment[];
 
+  /**
+   * ✅ Keep the enum-based status (already correct in your repo).
+   * We will use these values in the service/controller:
+   * PLANNED -> ACTIVE -> PUBLISHED -> CLOSED -> ARCHIVED
+   */
   @Prop({
     type: String,
     enum: Object.values(AppraisalCycleStatus),

@@ -15,6 +15,13 @@ export class payGrade {
     grossSalary: number;
     @Prop({ required: true, type: String, enum: ConfigStatus,default:ConfigStatus.DRAFT })
     status: ConfigStatus;// draft, approved, rejected
+    
+     @Prop({
+  type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'allowance' }],
+  default: []
+})
+allowances: mongoose.Types.ObjectId[];
+
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'EmployeeProfile' })
     createdBy?: mongoose.Types.ObjectId;

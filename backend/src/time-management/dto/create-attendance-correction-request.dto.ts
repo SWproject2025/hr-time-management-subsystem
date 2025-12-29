@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsOptional, IsEnum } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional, IsEnum, IsDateString } from 'class-validator';
 import { CorrectionRequestStatus } from '../models/enums';
 
 export class CreateAttendanceCorrectionRequestDto {
@@ -6,13 +6,20 @@ export class CreateAttendanceCorrectionRequestDto {
   @IsString()
   employeeId: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  attendanceRecord: string;
+  attendanceRecord?: string; // Optional - can be ObjectId or we'll find by date
+
+  @IsOptional()
+  @IsDateString()
+  date?: string; // Alternative to attendanceRecord - we'll find/create the record
 
   @IsOptional()
   @IsString()
   reason?: string;
+
+  @IsOptional()
+  requested?: any; // Store requested changes
 
   @IsOptional()
   @IsEnum(CorrectionRequestStatus)

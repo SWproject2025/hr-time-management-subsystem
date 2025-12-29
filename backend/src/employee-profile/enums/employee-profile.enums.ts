@@ -31,18 +31,18 @@ export enum WorkType {
 } // to be checked with Recruitment SubSystem
 
 export enum SystemRole {
-  DEPARTMENT_EMPLOYEE = 'department employee',
-  DEPARTMENT_HEAD = 'department head',
-  HR_MANAGER = 'HR Manager',
-  HR_EMPLOYEE = 'HR Employee',
-  PAYROLL_SPECIALIST = 'Payroll Specialist',
-  PAYROLL_MANAGER='Payroll Manager',
-  SYSTEM_ADMIN = 'System Admin',
-  LEGAL_POLICY_ADMIN = 'Legal & Policy Admin',
-  RECRUITER = 'Recruiter',
-  FINANCE_STAFF = 'Finance Staff',
-  JOB_CANDIDATE = 'Job Candidate',
-  HR_ADMIN = 'HR Admin',
+  DEPARTMENT_EMPLOYEE = 'DEPARTMENT_EMPLOYEE',
+  DEPARTMENT_HEAD = 'DEPARTMENT_HEAD',
+  HR_MANAGER = 'HR_MANAGER',
+  HR_EMPLOYEE = 'HR_EMPLOYEE',
+  PAYROLL_SPECIALIST = 'PAYROLL_SPECIALIST',
+  PAYROLL_MANAGER = 'PAYROLL_MANAGER',
+  SYSTEM_ADMIN = 'SYSTEM_ADMIN',
+  LEGAL_POLICY_ADMIN = 'LEGAL_POLICY_ADMIN',
+  RECRUITER = 'RECRUITER',
+  FINANCE_STAFF = 'FINANCE_STAFF',
+  JOB_CANDIDATE = 'JOB_CANDIDATE',
+  HR_ADMIN = 'HR_ADMIN',
 }
 
 export enum CandidateStatus {
